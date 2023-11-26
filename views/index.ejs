@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <video autoplay="autoplay" muted loop class="bg">
+        <source src="/assets/bg.mp4" type="video/mp4">
+    </video>
+    <section class="content">
+        <div class="hokku-board">
+            <header>
+                <div class="dots">
+                    <span class="red"></span>
+                    <span class="yellow"></span>
+                    <span class="green"></span>
+                </div>
+
+                <h1>hokku board</h1>
+            </header>
+            <ul class="list">
+                <% hokku.forEach((item, i, arr) => { %>
+                    <li>
+                        <blockquote class="quote">
+                            <span class="quote-author"><%= item.author %></span>
+                            <p class="quote-text"><%= item.text %></p>
+                        </blockquote>
+                        <time class="time">
+                        <%= `${item.created_at.getDate()}/${item.created_at.getMonth()}/${item.created_at.getFullYear()}, ${item.created_at.getHours().toString().padStart(2, 0)}:${item.created_at.getMinutes().toString().padStart(2, 0)}` %>
+                        </time>
+                    </li>
+                    <% if(arr.length - i - 1){ %>
+                        <hr/>
+                      <% } else{ %>
+                     <% } %>
+                <% }); %>
+            </ul>
+
+            <form class="form" action="/" method="post">
+                <div>
+                    <input name="text" placeholder="text" type="text">
+                    <input name="author" placeholder="author" type="text">
+                </div>
+                <button aria-label="send hokku"><img src="https://static.thenounproject.com/png/105496-200.png" alt="send hokku"/></button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
